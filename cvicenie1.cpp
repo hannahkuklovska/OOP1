@@ -31,4 +31,6 @@ int main()
           cout << "Nepodarilo sa otvoriť súbor!" << endl;
           return 1;
      }
+
+     file >> pocetProduktov;
 }
