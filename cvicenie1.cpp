@@ -43,4 +43,6 @@ int main()
           file >> produkty[i].pocet_na_sklade;
           file >> produkty[i].cena;
      }
+
+     file.close();
 }
