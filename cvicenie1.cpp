@@ -144,9 +144,26 @@ int main()
                                    zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i];
                                    zakaznik.rozpocet -= produkty[i].cena;
                                    produkty[i].pocet_na_sklade--;
+                                   cout << "Predaj prebehol uspesne! Zostavajuci rozpocet: " << zakaznik.rozpocet << "€." << endl;
+                              }
+
+                              else
+                              {
+                                   cout << "Nemate dostatocny rozpopcet." << endl;
                               }
                          }
                     }
+
+                    else
+                    {
+                         cout << "Produkt nie je na skalde. ";
+                         break;
+                    }
+               }
+
+               if (najdeny == false)
+               {
+                    cout << "Zle zadane ID." << endl;
                }
           }
      }
