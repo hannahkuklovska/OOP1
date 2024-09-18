@@ -19,3 +19,10 @@ struct ZAKAZNIK
      double rozpocet;
      PRODUKT kupene_produkty[50];
 };
+
+int main()
+{
+     // Načítanie produktov zo súboru
+     ifstream file("fotoaparaty.txt");
+     int pocetProduktov;
+}
