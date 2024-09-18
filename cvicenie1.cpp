@@ -58,9 +58,11 @@ int main()
      // volba produktu
      int volba;
      while (volba != 3)
-          cout << "\nVyhladavanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
-     cin >> volba;
      {
+          cout << "\nVyhladavanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
+          cin >> volba;
+
+          // hladanie podla nazvu
           if (volba == 1)
           {
                string hladany_nazov;
@@ -77,7 +79,38 @@ int main()
                     }
                }
 
-               if
+               if (najdeny == false)
+               {
+                    cout << "Produkt nebol najdeny." << endl;
+               }
+          }
+          // hladanie podla vyrobcu
+          if (volba == 2)
+          {
+               string hladany_vyrobca;
+               cout << "Zadajte hladaneho vyrobcu";
+               getline(cin, hladany_vyrobca);
+
+               bool najdeny = false;
+               for (int i = 0; i < pocetProduktov; i++)
+               {
+                    if (produkty[i].vyrobca == hladany_vyrobca)
+                    {
+                         cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << produkty[i].cena << "ks na sklade" << produkty[i].pocet_na_sklade << endl;
+                         najdeny = true;
+                    }
+               }
+
+               if (najdeny == false)
+               {
+                    cout << "Produkt nebol najdeny." << endl;
+               }
+
+               else if (volba == 3)
+               {
+                    cout << "Nakup bol ukonceny." << endl;
+                    break;
+               }
           }
      }
 }
