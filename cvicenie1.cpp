@@ -33,4 +33,5 @@ int main()
      }
 
      file >> pocetProduktov;
+     PRODUKT *produkty = new PRODUKT[pocetProduktov];
 }
