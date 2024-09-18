@@ -53,5 +53,16 @@ int main()
      cin >> zakaznik.meno;
      cout << "Zadajte vase priezvisko:";
      cin >> zakaznik.priezvisko;
-     cout << "Zadajte vas rozpocet:"
+     cout << "Zadajte vas rozpocet:";
+
+     // volba produktu
+     int volba;
+     while (volba != 3)
+          cout << "\nVyhladavanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
+     cin >> volba;
+     {
+          if (volba == 1)
+          {
+          }
+     }
 }
