@@ -19,6 +19,7 @@ struct ZAKAZNIK
      string priezvisko;
      double rozpocet;
      PRODUKT kupene_produkty[50];
+     int pocet_kupenych_pr = 0;
 };
 
 int main()
@@ -138,6 +139,10 @@ int main()
 
                          if (odpoved == 'A')
                          {
+                              if (zakaznik.rozpocet >= produkty[i].cena)
+                              {
+                                   zakaznik.kupene_produkty[pocet_kupenych_pr++]
+                              }
                          }
                     }
                }
