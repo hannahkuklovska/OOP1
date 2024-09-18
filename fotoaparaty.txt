@@ -1,0 +1,13 @@
+12
+1 Canon_EOS_R5 Canon 7 3699.99
+2 Nikon_Z7 Nikon 5 2999.99
+3 Sony_A7III Sony 8 2499.99
+4 Fujifilm_XT4 Fujifilm 10 1699.99
+5 Panasonic_Lumix_S5 Panasonic 6 1799.99
+6 Olympus_OMD_EM1 Olympus 4 1599.99
+7 Leica_M10 Leica 3 6999.99
+8 GoPro_Hero10 GoPro 15 499.99
+9 Canon_PowerShot_G7X Canon 12 749.99
+10 Nikon_D850 Nikon 5 3199.99
+11 Sony_RX100VII Sony 10 1199.99
+12 Fujifilm_X100V Fujifilm 9 1299.99
