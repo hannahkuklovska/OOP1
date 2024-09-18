@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+
 using namespace std;
 
 struct PRODUKT
@@ -38,9 +39,8 @@ int main()
      for (int i = 0; i < pocetProduktov; i++)
      {
           file >> produkty[i].ID;
-          file.ignore();
-          getline(file, produkty[i].nazov);
-          getline(file, produkty[i].vyrobca);
+          file >> produkty[i].nazov;
+          file >> produkty[i].vyrobca;
           file >> produkty[i].pocet_na_sklade;
           file >> produkty[i].cena;
      }
@@ -84,14 +84,14 @@ int main()
 
                if (najdeny == false)
                {
-                    cout << "Produkt nebol najdeny." << endl;
+                    cout << "Produkt nebol najdeny. " << endl;
                }
           }
           // hladanie podla vyrobcu
           if (volba == 2)
           {
                string hladany_vyrobca;
-               cout << "Zadajte hladaneho vyrobcu";
+               cout << "Zadajte hladaneho vyrobcu: ";
                getline(cin, hladany_vyrobca);
 
                bool najdeny = false;
@@ -108,11 +108,38 @@ int main()
                {
                     cout << "Produkt nebol najdeny." << endl;
                }
+          }
+          else if (volba == 3)
+          {
+               cout << "Nakup bol ukonceny. " << endl;
+               break;
+          }
+     }
 
-               else if (volba == 3)
+     if (volba == 1 || volba == 2)
+     {
+          int zvolene_ID;
+          cout << "Zvolte ID chceneho produktu: ";
+          cin >> zvolene_ID;
+
+          bool najdeny = false;
+          for (int i = 0; i < pocetProduktov; i++)
+          {
+               if (produkty[i].ID == zvolene_ID)
                {
-                    cout << "Nakup bol ukonceny." << endl;
-                    break;
+                    najdeny = true;
+
+                    if (produkty[i].pocet_na_sklade > 0)
+                    {
+                         char odpoved;
+                         cout << "Vybrany produkt: " << produkty[i].nazov << "za" << produkty[i].cena << "€" << endl;
+                         cout << "Mate zaujem o kupu tohto produktu? (A - áno, N - nie):" << endl;
+                         cin >> odpoved;
+
+                         if (odpoved == 'A')
+                         {
+                         }
+                    }
                }
           }
      }
