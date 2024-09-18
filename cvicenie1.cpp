@@ -34,4 +34,13 @@ int main()
 
      file >> pocetProduktov;
      PRODUKT *produkty = new PRODUKT[pocetProduktov];
+
+     for (int i = 0; i < pocetProduktov; i++)
+     {
+          file >> produkty[i].ID;
+          getline(file, produkty[i].nazov);
+          getline(file, produkty[i].vyrobca);
+          file >> produkty[i].pocet_na_sklade;
+          file >> produkty[i].cena;
+     }
 }
