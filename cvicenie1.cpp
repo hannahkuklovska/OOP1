@@ -15,7 +15,7 @@ struct PRODUKT
 struct ZAKAZNIK
 {
      string meno;
-     int priezvisko;
+     string priezvisko;
      double rozpocet;
      PRODUKT kupene_produkty[50];
 };
@@ -38,6 +38,7 @@ int main()
      for (int i = 0; i < pocetProduktov; i++)
      {
           file >> produkty[i].ID;
+          file.ignore();
           getline(file, produkty[i].nazov);
           getline(file, produkty[i].vyrobca);
           file >> produkty[i].pocet_na_sklade;
@@ -56,11 +57,12 @@ int main()
      cout << "Zadajte vas rozpocet:";
 
      // volba produktu
-     int volba;
+     int volba = 0;
      while (volba != 3)
      {
           cout << "\nVyhladavanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
           cin >> volba;
+          cin.ignore();
 
           // hladanie podla nazvu
           if (volba == 1)
