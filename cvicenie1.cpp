@@ -45,4 +45,13 @@ int main()
      }
 
      file.close();
+
+     // informácie o zákazníkovi
+
+     ZAKAZNIK zakaznik;
+     cout << "Zadajte vase meno:";
+     cin >> zakaznik.meno;
+     cout << "Zadajte vase priezvisko:";
+     cin >> zakaznik.priezvisko;
+     cout << "Zadajte vas rozpocet:"
 }
