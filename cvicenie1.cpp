@@ -141,7 +141,9 @@ int main()
                          {
                               if (zakaznik.rozpocet >= produkty[i].cena)
                               {
-                                   zakaznik.kupene_produkty[pocet_kupenych_pr++]
+                                   zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i];
+                                   zakaznik.rozpocet -= produkty[i].cena;
+                                   produkty[i].pocet_na_sklade--;
                               }
                          }
                     }
