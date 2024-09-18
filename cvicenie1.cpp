@@ -60,7 +60,7 @@ int main()
 
      // volba produktu
      int volba = 0;
-     while (volba != 3)
+     while (volba != 3 && zakaznik.rozpocet > 0)
      {
           cout << "\nVyhladavanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
           cin >> volba;
@@ -78,7 +78,7 @@ int main()
                {
                     if (produkty[i].nazov == hladany_nazov)
                     {
-                         cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << produkty[i].cena << "ks na sklade" << produkty[i].pocet_na_sklade << endl;
+                         cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
                          najdeny = true;
                     }
                }
@@ -100,7 +100,7 @@ int main()
                {
                     if (produkty[i].vyrobca == hladany_vyrobca)
                     {
-                         cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << produkty[i].cena << "ks na sklade" << produkty[i].pocet_na_sklade << endl;
+                         cout << produkty[i].ID << ". " << produkty[i].nazov << ", " << produkty[i].vyrobca << ", " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
                          najdeny = true;
                     }
                }
