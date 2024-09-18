@@ -63,6 +63,21 @@ int main()
      {
           if (volba == 1)
           {
+               string hladany_nazov;
+               cout << "Zadajte nazov produktu: ";
+               getline(cin, hladany_nazov);
+
+               bool najdeny = false;
+               for (int i = 0; i < pocetProduktov; i++)
+               {
+                    if (produkty[i].nazov == hladany_nazov)
+                    {
+                         cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << produkty[i].cena << "ks na sklade" << produkty[i].pocet_na_sklade << endl;
+                         najdeny = true;
+                    }
+               }
+
+               if
           }
      }
 }
