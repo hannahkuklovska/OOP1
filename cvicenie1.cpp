@@ -25,4 +25,10 @@ int main()
      // Načítanie produktov zo súboru
      ifstream file("fotoaparaty.txt");
      int pocetProduktov;
+
+     if (!file.is_open())
+     {
+          cout << "Nepodarilo sa otvoriť súbor!" << endl;
+          return 1;
+     }
 }
