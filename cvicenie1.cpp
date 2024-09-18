@@ -54,7 +54,8 @@ int main()
      cin >> zakaznik.meno;
      cout << "Zadajte vase priezvisko:";
      cin >> zakaznik.priezvisko;
-     cout << "Zadajte vas rozpocet:";
+     cout << "Zadajte vas rozpocet: ";
+     cin >> zakaznik.rozpocet;
 
      // volba produktu
      int volba = 0;
