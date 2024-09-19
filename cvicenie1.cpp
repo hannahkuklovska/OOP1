@@ -181,7 +181,11 @@ int main()
                blocek << zakaznik.kupene_produkty[i].nazov << " " << zakaznik.kupene_produkty[i].cena << "€.\n";
                total += zakaznik.kupene_produkty[i].cena;
           }
-     }
+
+          blocek << "Celkova suma: " << total << " €\n";
+          }
+
+     blocek.close();
 
      return 0;
 }
