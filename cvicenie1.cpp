@@ -170,10 +170,16 @@ int main()
      }
      // Vypis blocku
      ofstream blocek("blocek.txt");
+
+     double total = 0;
+     blocek << "Bloček \n Kúpené produkty \n"
+            << endl;
      if (file.is_open())
      {
-          for (int i = 0; i < zakaznik.pocet_kupenych_pr, i++)
+          for (int i = 0; i < zakaznik.pocet_kupenych_pr; i++)
           {
+               blocek << zakaznik.kupene_produkty[i].nazov << " " << zakaznik.kupene_produkty[i].cena << "€.\n";
+               total += zakaznik.kupene_produkty[i].cena;
           }
      }
 
