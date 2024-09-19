@@ -51,9 +51,9 @@ int main()
      // informácie o zákazníkovi
 
      ZAKAZNIK zakaznik;
-     cout << "Zadajte vače meno:";
+     cout << "Zadajte vače meno: ";
      cin >> zakaznik.meno;
-     cout << "Zadajte vaše priezvisko:";
+     cout << "Zadajte vaše priezvisko: ";
      cin >> zakaznik.priezvisko;
      cout << "Zadajte váš rozpočet: ";
      cin >> zakaznik.rozpocet;
@@ -175,6 +175,7 @@ int main()
      {
 
           blocek << "^^^ Bloček ^^^\n";
+          blocek << "Meno a priezvisko zákazníka : " << zakaznik.meno << " " << zakaznik.priezvisko << endl;
           blocek << "-----------------------------\n";
           blocek << "Zakúpené produkty:\n";
 
@@ -185,7 +186,9 @@ int main()
           }
 
           blocek << "-----------------------------\n";
-          blocek << "Celkova suma: " << total << " €\n";
+          blocek << "Celkova vyplatená suma: " << total << " €\n";
+          blocek << "Pôvodný rozpočet: " << zakaznik.rozpocet + total << " €\n";
+          blocek << "Zostatkový rozpočet: " << zakaznik.rozpocet << " €\n";
           blocek << "-----------------------------\n";
           cout << "Bloček bol úspešne uložený do súboru" << endl;
      }

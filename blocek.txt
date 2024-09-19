@@ -1,8 +1,10 @@
-Bloček
-.-----------------------------
-Zakúpené produkty: 
- 
-Canon_EOS_R5 3699.99€.
+^^^ Bloček ^^^
+Meno a priezvisko zákazníka : Hannah Kuklovska
 -----------------------------
-Celkova suma: 3699.99 €
+Zakúpené produkty:
+Canon_EOS_R5 3699.99 €
+-----------------------------
+Celkova vyplatená suma: 3699.99 €
+Pôvodný rozpočet: 9000 €
+Zostatkový rozpočet: 5300.01 €
 -----------------------------
