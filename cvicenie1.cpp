@@ -89,7 +89,7 @@ int main()
                }
           }
           // hladanie podla vyrobcu
-          if (volba == 2)
+          else if (volba == 2)
           {
                string hladany_vyrobca;
                cout << "Zadajte hladaneho vyrobcu: ";
@@ -115,56 +115,67 @@ int main()
                cout << "Nakup bol ukonceny. " << endl;
                break;
           }
-     }
 
-     if (volba == 1 || volba == 2)
-     {
-          int zvolene_ID;
-          cout << "Zvolte ID chceneho produktu: ";
-          cin >> zvolene_ID;
-
-          bool najdeny = false;
-          for (int i = 0; i < pocetProduktov; i++)
+          if (volba == 1 || volba == 2)
           {
-               if (produkty[i].ID == zvolene_ID)
+               int zvolene_ID;
+               cout << "Zvolte ID chceneho produktu: ";
+               cin >> zvolene_ID;
+
+               bool najdeny = false;
+               for (int i = 0; i < pocetProduktov; i++)
                {
-                    najdeny = true;
-
-                    if (produkty[i].pocet_na_sklade > 0)
+                    if (produkty[i].ID == zvolene_ID)
                     {
-                         char odpoved;
-                         cout << "Vybrany produkt: " << produkty[i].nazov << "za" << produkty[i].cena << "€" << endl;
-                         cout << "Mate zaujem o kupu tohto produktu? (A - áno, N - nie):" << endl;
-                         cin >> odpoved;
+                         najdeny = true;
 
-                         if (odpoved == 'A')
+                         if (produkty[i].pocet_na_sklade > 0)
                          {
-                              if (zakaznik.rozpocet >= produkty[i].cena)
-                              {
-                                   zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i];
-                                   zakaznik.rozpocet -= produkty[i].cena;
-                                   produkty[i].pocet_na_sklade--;
-                                   cout << "Predaj prebehol uspesne! Zostavajuci rozpocet: " << zakaznik.rozpocet << "€." << endl;
-                              }
+                              char odpoved;
+                              cout << "Vybrany produkt: " << produkty[i].nazov << "za" << produkty[i].cena << "€" << endl;
+                              cout << "Mate zaujem o kupu tohto produktu? (A - áno, N - nie):" << endl;
+                              cin >> odpoved;
 
-                              else
+                              if (odpoved == 'A')
                               {
-                                   cout << "Nemate dostatocny rozpopcet." << endl;
+                                   if (zakaznik.rozpocet >= produkty[i].cena)
+                                   {
+                                        zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i];
+                                        zakaznik.rozpocet -= produkty[i].cena;
+                                        produkty[i].pocet_na_sklade--;
+                                        cout << "Predaj prebehol uspesne! Zostavajuci rozpocet: " << zakaznik.rozpocet << "€." << endl;
+                                   }
+
+                                   else
+                                   {
+                                        cout << "Nemate dostatocny rozpocet." << endl;
+                                   }
+                                   break;
                               }
                          }
-                    }
 
-                    else
-                    {
-                         cout << "Produkt nie je na skalde. ";
+                         else
+                         {
+                              cout << "Produkt nie je na sklade. " << endl;
+                         }
                          break;
                     }
                }
-
                if (najdeny == false)
                {
                     cout << "Zle zadane ID." << endl;
                }
+               break;
           }
      }
+     // Vypis blocku
+     ofstream blocek("blocek.txt");
+     if (file.is_open())
+     {
+          for (int i = 0; i < zakaznik.pocet_kupenych_pr, i++)
+          {
+          }
+     }
+
+     return 0;
 }
