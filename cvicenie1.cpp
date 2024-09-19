@@ -51,18 +51,18 @@ int main()
      // informácie o zákazníkovi
 
      ZAKAZNIK zakaznik;
-     cout << "Zadajte vase meno:";
+     cout << "Zadajte vače meno:";
      cin >> zakaznik.meno;
-     cout << "Zadajte vase priezvisko:";
+     cout << "Zadajte vaše priezvisko:";
      cin >> zakaznik.priezvisko;
-     cout << "Zadajte vas rozpocet: ";
+     cout << "Zadajte váš rozpočet: ";
      cin >> zakaznik.rozpocet;
 
      // volba produktu
      int volba = 0;
      while (volba != 3 && zakaznik.rozpocet > 0)
      {
-          cout << "\nVyhladavanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
+          cout << "\nVyhĺadávanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
           cin >> volba;
           cin.ignore();
 
@@ -70,7 +70,7 @@ int main()
           if (volba == 1)
           {
                string hladany_nazov;
-               cout << "Zadajte nazov produktu: ";
+               cout << "Zadajte názov hľadaného produktu: ";
                getline(cin, hladany_nazov);
 
                bool najdeny = false;
@@ -85,14 +85,14 @@ int main()
 
                if (najdeny == false)
                {
-                    cout << "Produkt nebol najdeny. " << endl;
+                    cout << "Produkt nebol nájdený. " << endl;
                }
           }
           // hladanie podla vyrobcu
           else if (volba == 2)
           {
                string hladany_vyrobca;
-               cout << "Zadajte hladaneho vyrobcu: ";
+               cout << "Zadajte hľadaného výrobcu: ";
                getline(cin, hladany_vyrobca);
 
                bool najdeny = false;
@@ -107,19 +107,19 @@ int main()
 
                if (najdeny == false)
                {
-                    cout << "Produkt nebol najdeny." << endl;
+                    cout << "Ľutujem, produkt nebol nájdený." << endl;
                }
           }
           else if (volba == 3)
           {
-               cout << "Nakup bol ukonceny. " << endl;
+               cout << "Nákup bol ukončeny. " << endl;
                break;
           }
 
           if (volba == 1 || volba == 2)
           {
                int zvolene_ID;
-               cout << "Zvolte ID chceneho produktu: ";
+               cout << "Zvoľte ID želaného produktu: ";
                cin >> zvolene_ID;
 
                bool najdeny = false;
@@ -132,8 +132,8 @@ int main()
                          if (produkty[i].pocet_na_sklade > 0)
                          {
                               char odpoved;
-                              cout << "Vybrany produkt: " << produkty[i].nazov << "za" << produkty[i].cena << "€" << endl;
-                              cout << "Mate zaujem o kupu tohto produktu? (A - áno, N - nie):" << endl;
+                              cout << "Vami vybratý produkt: " << produkty[i].nazov << "za" << produkty[i].cena << "€" << endl;
+                              cout << "Máte záujem o kúpu tohto produktu? (A - áno, N - nie):" << endl;
                               cin >> odpoved;
 
                               if (odpoved == 'A')
@@ -143,14 +143,14 @@ int main()
                                         zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i];
                                         zakaznik.rozpocet -= produkty[i].cena;
                                         produkty[i].pocet_na_sklade--;
-                                        cout << "Predaj prebehol uspesne! Zostavajuci rozpocet: " << zakaznik.rozpocet << "€." << endl;
+                                        cout << "Predaj prebehol úspešne!\n Zostávajúci rozpočet: " << zakaznik.rozpocet << "€." << endl;
                                    }
 
                                    else
                                    {
-                                        cout << "Nemate dostatocny rozpocet." << endl;
+                                        cout << "Ľutujem, nemáte dostatočný rozpočet." << endl;
+                                        break;
                                    }
-                                   break;
                               }
                          }
 
@@ -158,32 +158,42 @@ int main()
                          {
                               cout << "Produkt nie je na sklade. " << endl;
                          }
-                         break;
                     }
                }
                if (najdeny == false)
                {
-                    cout << "Zle zadane ID." << endl;
+                    cout << "Zle zadané ID." << endl;
                }
-               break;
           }
      }
      // Vypis blocku
      ofstream blocek("blocek.txt");
 
      double total = 0;
-     blocek << "Bloček \n Kúpené produkty \n"
-            << endl;
-     if (file.is_open())
+
+     if (blocek.is_open())
      {
+
+          blocek << "^^^ Bloček ^^^\n";
+          blocek << "-----------------------------\n";
+          blocek << "Zakúpené produkty:\n";
+
           for (int i = 0; i < zakaznik.pocet_kupenych_pr; i++)
           {
-               blocek << zakaznik.kupene_produkty[i].nazov << " " << zakaznik.kupene_produkty[i].cena << "€.\n";
+               blocek << zakaznik.kupene_produkty[i].nazov << " " << zakaznik.kupene_produkty[i].cena << " €\n";
                total += zakaznik.kupene_produkty[i].cena;
           }
 
+          blocek << "-----------------------------\n";
           blocek << "Celkova suma: " << total << " €\n";
-          }
+          blocek << "-----------------------------\n";
+          cout << "Bloček bol úspešne uložený do súboru" << endl;
+     }
+
+     else
+     {
+          cout << "Nepodarilo sa otvoriť súbor pre vytvorenie bločku. " << endl;
+     }
 
      blocek.close();
 
