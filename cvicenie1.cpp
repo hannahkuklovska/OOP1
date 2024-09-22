@@ -137,7 +137,10 @@ int main()
                          if (produkty[i].pocet_na_sklade > 0)
                          {
                               char odpoved;
+                              int mnozstvo;
                               cout << "Vami vybratý produkt: " << produkty[i].nazov << "za" << produkty[i].cena << "€" << endl;
+                              cout << "Koľko kusov chcete kúpiť? ";
+                              cin >> mnozstvo;
                               cout << "Máte záujem o kúpu tohto produktu? (A - áno, N - nie):" << endl;
                               cin >> odpoved;
 
