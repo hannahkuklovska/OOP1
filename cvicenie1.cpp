@@ -28,15 +28,18 @@ int main()
      ifstream file("fotoaparaty.txt");
      int pocetProduktov;
 
+     // testovanie, či sa súbor otvoril
      if (!file.is_open())
      {
           cout << "Nepodarilo sa otvoriť súbor!" << endl;
           return 1;
      }
 
+     // priradenie
      file >> pocetProduktov;
      PRODUKT *produkty = new PRODUKT[pocetProduktov];
 
+     // načítanie informácii o každom jednom produkte
      for (int i = 0; i < pocetProduktov; i++)
      {
           file >> produkty[i].ID;
@@ -58,7 +61,7 @@ int main()
      cout << "Zadajte váš rozpočet: ";
      cin >> zakaznik.rozpocet;
 
-     // volba produktu
+     // volba produktu, pokračuje ak nie 3 (koniec) alebo zak nemá rozpočet
      int volba = 0;
      while (volba != 3 && zakaznik.rozpocet > 0)
      {
@@ -110,6 +113,8 @@ int main()
                     cout << "Ľutujem, produkt nebol nájdený." << endl;
                }
           }
+
+          // zákazník si zvolil ukončiť nákup
           else if (volba == 3)
           {
                cout << "Nákup bol ukončeny. " << endl;
@@ -136,13 +141,15 @@ int main()
                               cout << "Máte záujem o kúpu tohto produktu? (A - áno, N - nie):" << endl;
                               cin >> odpoved;
 
+                              // pridanie zvoleneho produktu, odpoveď Áno
+
                               if (odpoved == 'A')
                               {
                                    if (zakaznik.rozpocet >= produkty[i].cena)
                                    {
-                                        zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i];
-                                        zakaznik.rozpocet -= produkty[i].cena;
-                                        produkty[i].pocet_na_sklade--;
+                                        zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i]; // pridanie produktu do "košíka"
+                                        zakaznik.rozpocet -= produkty[i].cena;                                // zmenšenie rozpočtu
+                                        produkty[i].pocet_na_sklade--;                                        // o 1 produkt menej na sklade
                                         cout << "Predaj prebehol úspešne!\n Zostávajúci rozpočet: " << zakaznik.rozpocet << "€." << endl;
                                    }
 
@@ -160,6 +167,7 @@ int main()
                          }
                     }
                }
+               // neexistuje taký produkt
                if (najdeny == false)
                {
                     cout << "Zle zadané ID." << endl;
@@ -181,6 +189,7 @@ int main()
 
           for (int i = 0; i < zakaznik.pocet_kupenych_pr; i++)
           {
+               // zapísanie
                blocek << zakaznik.kupene_produkty[i].nazov << " " << zakaznik.kupene_produkty[i].cena << " €\n";
                total += zakaznik.kupene_produkty[i].cena;
           }
@@ -193,10 +202,13 @@ int main()
           cout << "Bloček bol úspešne uložený do súboru" << endl;
      }
 
+     // prípad ak sa nepodarí otvoriť súbor
      else
      {
           cout << "Nepodarilo sa otvoriť súbor pre vytvorenie bločku. " << endl;
      }
+
+     // zatvorenie súboru
 
      blocek.close();
 
