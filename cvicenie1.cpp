@@ -141,6 +141,20 @@ int main()
                               cout << "Vami vybratý produkt: " << produkty[i].nazov << "za" << produkty[i].cena << "€" << endl;
                               cout << "Koľko kusov chcete kúpiť? ";
                               cin >> mnozstvo;
+
+                              // Kontrola, či je dostatok na sklade
+
+                              if (mnozstvo <= produkty[i].pocet_na_sklade)
+                              {
+                                   cout << "Máte záujem o kúpu tohto produktu? (A - áno, N - nie):" << endl;
+                                   cin >> odpoved;
+
+                                   if (odpoved == 'A')
+                                   {
+                                        zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i]; // pridanie produktu do košíka
+                                   }
+                              }
+
                               cout << "Máte záujem o kúpu tohto produktu? (A - áno, N - nie):" << endl;
                               cin >> odpoved;
 
