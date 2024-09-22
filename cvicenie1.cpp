@@ -20,6 +20,7 @@ struct ZAKAZNIK
      double rozpocet;
      PRODUKT kupene_produkty[50];
      int pocet_kupenych_pr = 0;
+     int mnozstvo_kupenych_produktov[50];
 };
 
 int main()
@@ -156,10 +157,12 @@ int main()
                                         if (odpoved == 'A')
                                         {
 
-                                             zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i]; // pridanie produktu do košíka
-                                             zakaznik.rozpocet -= produkty[i].cena;                                // zmenšenie rozpočtu
-                                             produkty[i].pocet_na_sklade--;                                        // o 1 produkt menej na sklade
-                                             cout << "Predaj prebehol úspešne!\n Zostávajúci rozpočet: " << zakaznik.rozpocet << "€." << endl;
+                                             zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr] = produkty[i];          // pridanie produktu do košíka
+                                             zakaznik.mnozstvo_kupenych_produktov[zakaznik.pocet_kupenych_pr] = mnozstvo; // pridanie mnozstva
+                                             zakaznik.pocet_kupenych_pr++;                                                // zvysenie poctu kupenych pr
+                                             zakaznik.rozpocet -= produkty[i].cena;                                       // zmenšenie rozpočtu
+                                             produkty[i].pocet_na_sklade -= mnozstvo;                                     // znizenie poctu opr na sklade o mnozstvo
+                                             cout << "Predaj prebehol úspešne!\n Zostávajúci rozpočet: " << zakaznik.rozpocet << "€.\n";
                                         }
                                    }
 
@@ -203,9 +206,13 @@ int main()
 
           for (int i = 0; i < zakaznik.pocet_kupenych_pr; i++)
           {
-               // zapísanie
-               blocek << zakaznik.kupene_produkty[i].nazov << " " << zakaznik.kupene_produkty[i].cena << " €\n";
-               total += zakaznik.kupene_produkty[i].cena;
+
+               // vypocitanie celkovej sumy pre jednotlive pr (viac ks napr)
+               double cena_spolu = zakaznik.kupene_produkty[i].cena * zakaznik.mnozstvo_kupenych_produktov[i];
+
+               blocek << zakaznik.kupene_produkty[i].nazov << " - " << zakaznik.mnozstvo_kupenych_produktov[i] << " ks, cena za jednotku: " << zakaznik.kupene_produkty[i].cena << " €, spolu: " << cena_spolu << " €\n";
+
+               total += zakaznik.kupene_produkty[i].cena; // celkova suma (zvysenie)
           }
 
           blocek << "-----------------------------\n";
@@ -219,7 +226,7 @@ int main()
      // prípad ak sa nepodarí otvoriť súbor
      else
      {
-          cout << "Nepodarilo sa otvoriť súbor pre vytvorenie bločku. " << endl;
+          cout << " Nepodarilo sa otvoriť súbor pre vytvorenie bločku. " << endl;
      }
 
      // zatvorenie súboru
