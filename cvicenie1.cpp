@@ -146,28 +146,21 @@ int main()
 
                               if (mnozstvo <= produkty[i].pocet_na_sklade)
                               {
-                                   cout << "Máte záujem o kúpu tohto produktu? (A - áno, N - nie):" << endl;
-                                   cin >> odpoved;
+                                   double total_price = produkty[i].cena * mnozstvo;
 
-                                   if (odpoved == 'A')
+                                   if (zakaznik.rozpocet >= total_price)
                                    {
-                                        zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i]; // pridanie produktu do košíka
-                                   }
-                              }
+                                        cout << "Celková cena: " << total_price << " €. Máte záujem o kúpu tohto produktu? (A - áno, N - nie): ";
+                                        cin >> odpoved;
 
-                              cout << "Máte záujem o kúpu tohto produktu? (A - áno, N - nie):" << endl;
-                              cin >> odpoved;
+                                        if (odpoved == 'A')
+                                        {
 
-                              // pridanie zvoleneho produktu, odpoveď Áno
-
-                              if (odpoved == 'A')
-                              {
-                                   if (zakaznik.rozpocet >= produkty[i].cena)
-                                   {
-                                        zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i]; // pridanie produktu do "košíka"
-                                        zakaznik.rozpocet -= produkty[i].cena;                                // zmenšenie rozpočtu
-                                        produkty[i].pocet_na_sklade--;                                        // o 1 produkt menej na sklade
-                                        cout << "Predaj prebehol úspešne!\n Zostávajúci rozpočet: " << zakaznik.rozpocet << "€." << endl;
+                                             zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr++] = produkty[i]; // pridanie produktu do košíka
+                                             zakaznik.rozpocet -= produkty[i].cena;                                // zmenšenie rozpočtu
+                                             produkty[i].pocet_na_sklade--;                                        // o 1 produkt menej na sklade
+                                             cout << "Predaj prebehol úspešne!\n Zostávajúci rozpočet: " << zakaznik.rozpocet << "€." << endl;
+                                        }
                                    }
 
                                    else
@@ -176,18 +169,22 @@ int main()
                                         break;
                                    }
                               }
-                         }
 
+                              else
+                              {
+                                   cout << "Ľutujem, nemáme dostatok na sklade.\n ";
+                              }
+                         }
                          else
                          {
-                              cout << "Produkt nie je na sklade. " << endl;
+                              cout << "Produkt nie je na sklade.\n ";
                          }
                     }
                }
                // neexistuje taký produkt
                if (najdeny == false)
                {
-                    cout << "Zle zadané ID." << endl;
+                    cout << "Zle zadané ID.\n";
                }
           }
      }
