@@ -89,7 +89,7 @@ int main()
 
                if (najdeny == false)
                {
-                    cout << "Produkt nebol nájdený. " << endl;
+                    cout << "Ľutujem, produkt nebol nájdený. " << endl;
                }
           }
           // hladanie podla vyrobcu
@@ -154,7 +154,7 @@ int main()
                                         cout << "Celková cena: " << total_price << " €. Máte záujem o kúpu tohto produktu? (A - áno, N - nie): ";
                                         cin >> odpoved;
 
-                                        if (odpoved == 'A')
+                                        if (odpoved == 'A' || 'a')
                                         {
 
                                              zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr] = produkty[i];          // pridanie produktu do košíka
@@ -180,14 +180,14 @@ int main()
                          }
                          else
                          {
-                              cout << "Produkt nie je na sklade.\n ";
+                              cout << "Ľutujem, produkt nie je na sklade.\n ";
                          }
                     }
                }
                // neexistuje taký produkt
                if (najdeny == false)
                {
-                    cout << "Zle zadané ID.\n";
+                    cout << "ľutujem, ID bolo zle zadané.\n";
                }
           }
      }
@@ -220,7 +220,7 @@ int main()
           blocek << "Pôvodný rozpočet: " << zakaznik.rozpocet + total << " €\n";
           blocek << "Zostatkový rozpočet: " << zakaznik.rozpocet << " €\n";
           blocek << "-----------------------------\n";
-          cout << "Bloček bol úspešne uložený do súboru" << endl;
+          cout << "Ďakujeme za nákup, zoberte si bloček prosím" << endl;
      }
 
      // prípad ak sa nepodarí otvoriť súbor

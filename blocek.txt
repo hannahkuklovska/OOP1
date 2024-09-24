@@ -1,10 +1,10 @@
 ^^^ Bloček ^^^
-Meno a priezvisko zákazníka : Hannah Kuklovska
+Meno a priezvisko zákazníka : H K
 -----------------------------
 Zakúpené produkty:
-Canon_EOS_R5 3699.99 €
+Canon_EOS_R5 - 2 ks, cena za jednotku: 3699.99 €, spolu: 7399.98 €
 -----------------------------
 Celkova vyplatená suma: 3699.99 €
-Pôvodný rozpočet: 9000 €
-Zostatkový rozpočet: 5300.01 €
+Pôvodný rozpočet: 8000 €
+Zostatkový rozpočet: 4300.01 €
 -----------------------------
