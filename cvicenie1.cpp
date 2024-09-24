@@ -157,7 +157,7 @@ int main()
                                         cout << "Celková cena: " << total_price << " €. Máte záujem o kúpu tohto produktu? (A - áno, N - nie): ";
                                         cin >> odpoved;
 
-                                        if (odpoved == 'A' || 'a')
+                                        if (odpoved == 'A' || odpoved == 'a') // aj male a je pripustne
                                         {
 
                                              zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr] = produkty[i];          // pridanie produktu do košíka
@@ -166,6 +166,10 @@ int main()
                                              zakaznik.rozpocet -= produkty[i].cena;                                       // zmenšenie rozpočtu
                                              produkty[i].pocet_na_sklade -= mnozstvo;                                     // znizenie poctu opr na sklade o mnozstvo
                                              cout << "Predaj prebehol úspešne!\n Zostávajúci rozpočet: " << zakaznik.rozpocet << "€.\n";
+                                        }
+                                        else if (odpoved == 'N' || odpoved == 'n')
+                                        {
+                                             cout << "Nákup produktu bol zrušený.\n";
                                         }
                                    }
 
