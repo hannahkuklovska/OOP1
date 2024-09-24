@@ -89,7 +89,7 @@ int main()
 
                if (najdeny == false)
                {
-                    cout << "Ľutujem, produkt nebol nájdený. " << endl;
+                    cout << "Ľutujeme, produkt nebol nájdený. " << endl;
                }
           }
           // hladanie podla vyrobcu
@@ -111,7 +111,7 @@ int main()
 
                if (najdeny == false)
                {
-                    cout << "Ľutujem, produkt nebol nájdený." << endl;
+                    cout << "Ľutujeme, produkt nebol nájdený." << endl;
                }
           }
 
@@ -168,26 +168,26 @@ int main()
 
                                    else
                                    {
-                                        cout << "Ľutujem, nemáte dostatočný rozpočet." << endl;
+                                        cout << "Ľutujeme, nemáte dostatočný rozpočet." << endl;
                                         break;
                                    }
                               }
 
                               else
                               {
-                                   cout << "Ľutujem, nemáme dostatok na sklade.\n ";
+                                   cout << "Ľutujeme, nemáme dostatok na sklade.\n ";
                               }
                          }
                          else
                          {
-                              cout << "Ľutujem, produkt nie je na sklade.\n ";
+                              cout << "Ľutujeme, produkt nie je na sklade.\n ";
                          }
                     }
                }
                // neexistuje taký produkt
                if (najdeny == false)
                {
-                    cout << "ľutujem, ID bolo zle zadané.\n";
+                    cout << "Ľutujeme, ID bolo zle zadané.\n";
                }
           }
      }
@@ -199,7 +199,8 @@ int main()
      if (blocek.is_open())
      {
 
-          blocek << "^^^ Bloček ^^^\n";
+          blocek << "~~~~~~~~~~~ Bloček ~~~~~~~~~ \n";
+          blocek << "-----------------------------\n";
           blocek << "Meno a priezvisko zákazníka : " << zakaznik.meno << " " << zakaznik.priezvisko << endl;
           blocek << "-----------------------------\n";
           blocek << "Zakúpené produkty:\n";
