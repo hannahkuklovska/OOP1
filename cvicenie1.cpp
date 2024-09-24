@@ -18,9 +18,9 @@ struct ZAKAZNIK
      string meno;
      string priezvisko;
      double rozpocet;
-     PRODUKT kupene_produkty[50];
+     PRODUKT kupene_produkty[50]; // statické pole produktov
      int pocet_kupenych_pr = 0;
-     int mnozstvo_kupenych_produktov[50];
+     int mnozstvo_kupenych_produktov[50]; // staticky alokovane
 };
 
 int main()
@@ -37,6 +37,8 @@ int main()
      }
 
      // priradenie
+
+     // dynamicke alokovanie pola premennych typu PRODUKT, ich nacitavanie zo suboru
      file >> pocetProduktov;
      PRODUKT *produkty = new PRODUKT[pocetProduktov];
 
@@ -52,7 +54,7 @@ int main()
 
      file.close();
 
-     // informácie o zákazníkovi
+     // informácie o zákazníkovi cez konzolu, zakaznik na vyzvu vpisuje
 
      ZAKAZNIK zakaznik;
      cout << "Zadajte vače meno: ";
@@ -66,6 +68,7 @@ int main()
      int volba = 0;
      while (volba != 3 && zakaznik.rozpocet > 0)
      {
+          // ponuka na vyhľadávanie produktov podla:
           cout << "\nVyhĺadávanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
           cin >> volba;
           cin.ignore();
