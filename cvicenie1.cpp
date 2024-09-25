@@ -25,6 +25,52 @@ struct ZAKAZNIK
      int mnozstvo_kupenych_produktov[50]; // staticky alokovane
 };
 
+bool nacitanie_produktov(PRODUKT *&produkty, int &pocetProduktov)
+{
+     // Načítanie produktov zo súboru
+     ifstream file("fotoaparaty.txt");
+
+     // testovanie, či sa súbor otvoril
+     if (!file.is_open())
+     {
+          cout << "Nepodarilo sa otvoriť súbor!" << endl;
+          return false;
+     }
+
+     // dynamicke alokovanie pola premennych typu PRODUKT, ich nacitavanie zo suboru
+     file >> pocetProduktov;
+     PRODUKT *produkty = new PRODUKT[pocetProduktov];
+     // načítanie informácii o každom jednom produkte
+     for (int i = 0; i < pocetProduktov; i++)
+     {
+          file >> produkty[i].ID;
+          file >> produkty[i].nazov;
+          file >> produkty[i].vyrobca;
+          file >> produkty[i].pocet_na_sklade;
+          file >> produkty[i].cena;
+     }
+
+     file.close();
+     return true;
+}
+
+void informacie_o_zakaznikovi(ZAKAZNIK &zakaznik)
+{
+     cout << "Zadajte vače meno: ";
+     cin >> zakaznik.meno;
+     cout << "Zadajte vaše priezvisko: ";
+     cin >> zakaznik.priezvisko;
+
+     // Kontrola zadaného rozpočtu (overenie, či je dobrého typu a nezáporný)
+     cout << "Zadajte váš rozpočet: ";
+     while (!(cin >> zakaznik.rozpocet) || zakaznik.rozpocet <= 0)
+     {
+          cin.clear();
+          cin.ignore(100, '\n');
+          cout << "Neplatný vstup, zadajte prosím platný rozpočet: ";
+     }
+}
+
 int main()
 {
      // Načítanie produktov zo súboru
@@ -110,7 +156,6 @@ int main()
                     {
                          if (produkty[i].nazov == hladany_nazov)
                          {
-
                               zobrazeneIDs.insert(produkty[i].ID); // pridanie do setu
                               cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
                               najdeny = true; // najdeny produkt
