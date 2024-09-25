@@ -216,7 +216,7 @@ int main()
           {
                if (produkty[i].ID == zvolene_ID)
                {
-                    najdeny = true;
+                    spravne_id = true;
 
                     if (produkty[i].pocet_na_sklade > 0)
                     {
@@ -284,7 +284,7 @@ int main()
                }
           }
           // neexistuje taký produkt
-          if (najdeny == false)
+          if (spravne_id == false)
           {
                cout << "Ľutujeme, ID bolo zle zadané.\n";
           }
