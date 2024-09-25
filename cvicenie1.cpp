@@ -192,34 +192,7 @@ int main()
                     cout << "Ľutujeme, produkt nebol nájdený." << endl;
                     continue;
                }
-
-               if (najdeny == true)
-               {
-                    int zvolene_ID;
-                    bool spravne_id = false;
-                    cout << "Zvoľte si ID želaného produktu: ";
-                    do
-                    {
-                         if (!(cin >> zvolene_ID))
-                         // element nie je v sete, return value je true a skočí na koniec setu
-                         {
-                              cin.clear();
-                              cin.ignore(100, '\n');
-                              cout << "Neplatné ID, skúste to znova: ";
-                         }
-                         else if (zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end()) // overenie, či vybrané ID je zobrazene
-                         {
-                              cout << "ID nie je na zozname zobrazených produktov, skúste to znova: ";
-                         }
-
-                         else
-                         {
-                              spravne_id = true; // spravne ID najdene
-                         }
-                    } while (spravne_id == false);
-               }
           }
-
           // zákazník si zvolil ukončiť nákup
           else if (volba == 3)
           {
