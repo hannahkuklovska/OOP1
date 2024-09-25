@@ -252,6 +252,15 @@ else if (volba == 3)
 int zvolene_ID;          // ID ktore si zakaznik vyberie
 bool spravne_id = false; // prvtone nastavenie false
 
+cout << "Zvoľte ID želaného produktu: ";
+
+while (!(cin >> zvolene_ID) || zobrazeneIDs.find(zvolene_ID) == zobrazenie.end())
+{
+     cin.clear();
+     cin.ignore(100, '\n');
+     cout << "Neplatné ID, skúste to znova: ";
+}
+
 if (volba == 1 || volba == 2)
 {
      int zvolene_ID;
