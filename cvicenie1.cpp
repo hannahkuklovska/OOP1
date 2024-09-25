@@ -94,41 +94,60 @@ int main()
                getline(cin, hladany_nazov);
 
                bool najdeny = false;
-               for (int i = 0; i < pocetProduktov; i++)
-               {
-                    if (produkty[i].nazov == hladany_nazov)
-                    {
-                         std::cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
-                         najdeny = true;
-                    }
-               }
 
-               if (najdeny == false)
+               do
                {
-                    std::cout << "Ľutujeme, produkt nebol nájdený. " << endl;
-               }
+                    cout << "Zadajte názov hľadaného produktu: ";
+                    getline(cin, hladany_nazov);
+
+                    najdeny = false; // reset bool(u) spat na false
+
+                    for (int i = 0; i < pocetProduktov; i++)
+                    {
+                         if (produkty[i].nazov == hladany_nazov)
+                         {
+                              cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
+                              najdeny = true; // najdeny produkt
+                         }
+                    }
+
+                    if (najdeny == false)
+                    {
+                         cout << "Ľutujeme, produkt nebol nájdený. " << endl;
+                    }
+               } while (!najdeny && volba != 3);
+               // hladanie podla vyrobcu
           }
-          // hladanie podla vyrobcu
+
           else if (volba == 2)
           {
                string hladany_vyrobca;
+               bool najdeny = false; // nastavenie bool(u) spat na false
                std::cout << "Zadajte hľadaného výrobcu: ";
                getline(cin, hladany_vyrobca);
 
-               bool najdeny;
-               for (int i = 0; i < pocetProduktov; i++)
+               do
                {
-                    if (produkty[i].vyrobca == hladany_vyrobca)
+
+                    cout << "Zadajte hľadaného výrobcu: ";
+                    getline(cin, hladany_vyrobca);
+
+                    najdeny = false;
+
+                    for (int i = 0; i < pocetProduktov; i++)
                     {
-                         std::cout << produkty[i].ID << ". " << produkty[i].nazov << ", " << produkty[i].vyrobca << ", " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
-                         najdeny = true;
+                         if (produkty[i].vyrobca == hladany_vyrobca)
+                         {
+                              cout << produkty[i].ID << ". " << produkty[i].nazov << ", " << produkty[i].vyrobca << ", " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
+                              najdeny = true;
+                         }
                     }
 
                     if (najdeny == false)
                     {
                          std::cout << "Ľutujeme, produkt nebol nájdený." << endl;
                     }
-               }
+               } while (!najdeny && volba != 3);
           }
 
           // zákazník si zvolil ukončiť nákup
