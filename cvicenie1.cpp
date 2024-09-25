@@ -297,7 +297,7 @@ int main()
 
                blocek << zakaznik.kupene_produkty[i].nazov << " - " << zakaznik.mnozstvo_kupenych_produktov[i] << " ks, cena za jednotku: " << zakaznik.kupene_produkty[i].cena << " €, spolu: " << cena_spolu << " €\n";
 
-               total += zakaznik.kupene_produkty[i].cena; // celkova suma (zvysenie)
+               total += cena_spolu; // celkova suma (zvysenie)
           }
 
           blocek << "-----------------------------\n";
