@@ -115,7 +115,7 @@ int main()
                std::cout << "Zadajte hľadaného výrobcu: ";
                getline(cin, hladany_vyrobca);
 
-               bool najdeny = false;
+               bool najdeny;
                for (int i = 0; i < pocetProduktov; i++)
                {
                     if (produkty[i].vyrobca == hladany_vyrobca)
@@ -123,11 +123,11 @@ int main()
                          std::cout << produkty[i].ID << ". " << produkty[i].nazov << ", " << produkty[i].vyrobca << ", " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
                          najdeny = true;
                     }
-               }
 
-               if (najdeny == false)
-               {
-                    std::cout << "Ľutujeme, produkt nebol nájdený." << endl;
+                    if (najdeny == false)
+                    {
+                         std::cout << "Ľutujeme, produkt nebol nájdený." << endl;
+                    }
                }
           }
 
