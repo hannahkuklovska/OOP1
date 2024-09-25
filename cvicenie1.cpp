@@ -122,6 +122,17 @@ int main()
                // hladanie podla vyrobcu
           }
 
+          if (najdena = true)
+          {
+               int zvolene_ID;
+               cout << "Zvoĺte ID želaného produktu: " while (!(cin >> zvolene_ID) || find(begin(zobrazeneIDs), end(zobrazeneIDs), zvolene_ID))
+               {
+                    cin.clear();
+                    cin.ignore(100, '\n');
+                    cout << "Neplatné ID, skúste to znova: ";
+               }
+          }
+
           else if (volba == 2)
           {
                string hladany_vyrobca;
