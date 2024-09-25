@@ -165,6 +165,7 @@ int main()
                if (najdeny == false)
                {
                     cout << "Ľutujeme, produkt nebol nájdený. " << endl;
+                    continue;
                }
           }
           while (!najdeny && volba != 3)
