@@ -68,7 +68,7 @@ int main()
      {
           cin.clear();
           cin.ignore(100, "\n");
-          std::cout << "Neplatný vstup, zadajte prosím platný rozpočet: ";
+          cout << "Neplatný vstup, zadajte prosím platný rozpočet: ";
      }
 
      // volba produktu, pokračuje ak nie 3 (koniec) alebo zak nemá rozpočet
@@ -76,8 +76,14 @@ int main()
      while (volba != 3 && zakaznik.rozpocet > 0)
      {
           // ponuka na vyhľadávanie produktov podla:
-          std::cout << "\nVyhĺadávanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
-          cin >> volba;
+          cout << "\nVyhĺadávanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
+          while ((!cin >> volba) || volba < 1 || volba > 3)
+          {
+               cin.clear();
+               cin.ignore(100, "\n");
+               cout << "Neplatná voľba, skúste to znova: ";
+          }
+
           cin.ignore();
 
           // hladanie podla nazvu
@@ -135,8 +141,15 @@ int main()
           if (volba == 1 || volba == 2)
           {
                int zvolene_ID;
+               bool najdeny = false;
+
                cout << "Zvoľte ID želaného produktu: ";
-               cin >> zvolene_ID;
+               while (!(cin >> zvolene_ID))
+               {
+                    cin.clear();
+                    cin.ignore(100, "\n");
+                    cout << "Neplatné ID, skúste to znova: ";
+               }
 
                bool najdeny = false;
                for (int i = 0; i < pocetProduktov; i++)
