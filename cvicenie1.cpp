@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <set>
+#include <vector>
 
 using namespace std;
 
@@ -28,6 +30,7 @@ int main()
      // Načítanie produktov zo súboru
      ifstream file("fotoaparaty.txt");
      int pocetProduktov;
+     int pocet_zobrazenychIDs;
 
      // testovanie, či sa súbor otvoril
      if (!file.is_open())
@@ -57,13 +60,13 @@ int main()
      // informácie o zákazníkovi cez konzolu, zakaznik na vyzvu vpisuje
 
      ZAKAZNIK zakaznik;
-     std::cout << "Zadajte vače meno: ";
+     cout << "Zadajte vače meno: ";
      cin >> zakaznik.meno;
-     std::cout << "Zadajte vaše priezvisko: ";
+     cout << "Zadajte vaše priezvisko: ";
      cin >> zakaznik.priezvisko;
 
      // Kontrola zadaného rozpočtu (overenie, či je dobrého typu a nezáporný)
-     std::cout << "Zadajte váš rozpočet: ";
+     cout << "Zadajte váš rozpočet: ";
      while (!(cin >> zakaznik.rozpocet) || zakaznik.rozpocet <= 0)
      {
           cin.clear();
@@ -86,9 +89,8 @@ int main()
 
           cin.ignore();
 
-          // Maximálna veľkosť array IDs, ktore sa zakaznikovi zobrazia, staticky
-          int zobrazeneIDs[50];
-          int pocet_zobrazenychIDs = 0;
+          // zobrazene ID budu tvoriť set
+          set<int> zobrazeneIDs;
 
           // hladanie podla nazvu
           if (volba == 1)
@@ -99,16 +101,17 @@ int main()
                do
                {
                     cout << "Zadajte názov hľadaného produktu: ";
-                    getline(cin, hladany_nazov); // reset premennej na 0
+                    getline(cin, hladany_nazov);
 
-                    najdeny = false; // reset bool(u) spat na false
-                    pocet_zobrazenychIDs = 0;
+                    najdeny = false;          // reset bool(u) spat na false
+                    pocet_zobrazenychIDs = 0; // reset na 0
 
                     for (int i = 0; i < pocetProduktov; i++)
                     {
                          if (produkty[i].nazov == hladany_nazov)
                          {
-                              zobrazeneIDs[pocet_zobrazenychIDs++] = produkty[i].ID; // pridanie ID do array
+
+                              zobrazeneIDs.insert(produkty[i].ID); // pridanie do setu
                               cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
                               najdeny = true; // najdeny produkt
                          }
@@ -119,17 +122,22 @@ int main()
                          cout << "Ľutujeme, produkt nebol nájdený. " << endl;
                     }
                } while (!najdeny && volba != 3);
-               // hladanie podla vyrobcu
 
                if (najdeny == true)
                {
                     int zvolene_ID;
-                    cout << "Zvoĺte ID želaného produktu: ";
-                    while (!(cin >> zvolene_ID) || find(begin(zobrazeneIDs), end(zobrazeneIDs), zvolene_ID))
+                    bool spravne_id = false;
+                    // cout << "Zvoĺte ID želaného produktu: ";
+                    if (!(cin >> zvolene_ID) || zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end())
                     {
-                         cin.clear();
-                         cin.ignore(100, '\n');
+                         cin.clear();           // vycistenie, reset
+                         cin.ignore(100, '\n'); // ignorovanie 100 znakov
                          cout << "Neplatné ID, skúste to znova: ";
+                    }
+
+                    else
+                    {
+                         spravne_id = true;
                     }
                }
           }
@@ -152,7 +160,7 @@ int main()
                     {
                          if (produkty[i].vyrobca == hladany_vyrobca)
                          {
-                              zobrazeneIDs[pocet_zobrazenychIDs++] = produkty[i].ID;
+                              zobrazeneIDs.insert(produkty[i].ID);
                               cout << produkty[i].ID << ". " << produkty[i].nazov << ", " << produkty[i].vyrobca << ", " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
                               najdeny = true;
                          }
@@ -167,8 +175,9 @@ int main()
                if (najdeny == true)
                {
                     int zvolene_ID;
-                    cout << "Zvoľte si ID želaného produktu: ";
-                    while (!(cin >> zvolene_ID) || find(begin(zobrazeneIDs), end(zobrazeneIDs), zvolene_ID))
+                    // cout << "Zvoľte si ID želaného produktu: ";
+                    while (!(cin >> zvolene_ID) || zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end())
+                    // element nie je v sete, return value je true a skočí na koniec setu
                     {
                          cin.clear();
                          cin.ignore(100, '\n');
@@ -317,6 +326,7 @@ int main()
      // zatvorenie súboru
 
      blocek.close();
+     delete[] produkty; // Vymazanie dynamicky alokovanej pamate
 
      return 0;
 }

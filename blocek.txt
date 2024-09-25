@@ -1,11 +1,11 @@
 ~~~~~~~~~~~ Bloček ~~~~~~~~~ 
 -----------------------------
-Meno a priezvisko zákazníka : H K
+Meno a priezvisko zákazníka : Hannah Kuklovska
 -----------------------------
 Zakúpené produkty:
-Canon_EOS_R5 - 2 ks, cena za jednotku: 3699.99 €, spolu: 7399.98 €
+Canon_PowerShot_G7X - 2 ks, cena za jednotku: 749.99 €, spolu: 1499.98 €
 -----------------------------
-Celkova vyplatená suma: 3699.99 €
-Pôvodný rozpočet: 9000 €
-Zostatkový rozpočet: 5300.01 €
+Celkova vyplatená suma: 1499.98 €
+Pôvodný rozpočet: 9749.99 €
+Zostatkový rozpočet: 8250.01 €
 -----------------------------
