@@ -86,6 +86,9 @@ int main()
 
           cin.ignore();
 
+          // Maximálna veľkosť array IDs, ktore sa zakaznikovi zobrazia, staticky
+          int zobrazeneIDs[50];
+
           // hladanie podla nazvu
           if (volba == 1)
           {

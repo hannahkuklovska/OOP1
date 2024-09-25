@@ -3,8 +3,9 @@
 Meno a priezvisko zákazníka : H K
 -----------------------------
 Zakúpené produkty:
+Canon_EOS_R5 - 2 ks, cena za jednotku: 3699.99 €, spolu: 7399.98 €
 -----------------------------
-Celkova vyplatená suma: 0 €
-Pôvodný rozpočet: -900 €
-Zostatkový rozpočet: -900 €
+Celkova vyplatená suma: 3699.99 €
+Pôvodný rozpočet: 9000 €
+Zostatkový rozpočet: 5300.01 €
 -----------------------------
