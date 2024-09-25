@@ -71,6 +71,52 @@ void informacie_o_zakaznikovi(ZAKAZNIK &zakaznik)
      }
 }
 
+void tlac_blocku(const ZAKAZNIK zakaznik)
+{
+     // Vypis blocku
+     ofstream blocek("blocek.txt");
+
+     double total = 0;
+
+     if (blocek.is_open())
+     {
+
+          blocek << "~~~~~~~~~~~ Bloček ~~~~~~~~~ \n";
+          blocek << "-----------------------------\n";
+          blocek << "Meno a priezvisko zákazníka : " << zakaznik.meno << " " << zakaznik.priezvisko << endl;
+          blocek << "-----------------------------\n";
+          blocek << "Zakúpené produkty:\n";
+
+          for (int i = 0; i < zakaznik.pocet_kupenych_pr; i++)
+          {
+
+               // vypocitanie celkovej sumy pre jednotlive pr (viac ks napr)
+               double cena_spolu = zakaznik.kupene_produkty[i].cena * zakaznik.mnozstvo_kupenych_produktov[i];
+
+               blocek << zakaznik.kupene_produkty[i].nazov << " - " << zakaznik.mnozstvo_kupenych_produktov[i] << " ks, cena za jednotku: " << zakaznik.kupene_produkty[i].cena << " €, spolu: " << cena_spolu << " €\n";
+
+               total += cena_spolu; // celkova suma (zvysenie)
+          }
+
+          blocek << "-----------------------------\n";
+          blocek << "Celkova vyplatená suma: " << total << " €\n";
+          blocek << "Pôvodný rozpočet: " << zakaznik.rozpocet + total << " €\n";
+          blocek << "Zostatkový rozpočet: " << zakaznik.rozpocet << " €\n";
+          blocek << "-----------------------------\n";
+          cout << "Ďakujeme za nákup, zoberte si bloček prosím" << endl;
+     }
+
+     // prípad ak sa nepodarí otvoriť súbor
+     else
+     {
+          cout << " Nepodarilo sa otvoriť súbor pre vytvorenie bločku. " << endl;
+     }
+
+     // zatvorenie súboru
+
+     blocek.close();
+}
+
 int main()
 {
      // Načítanie produktov zo súboru
