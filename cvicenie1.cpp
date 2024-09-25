@@ -67,7 +67,7 @@ int main()
      while (!(cin >> zakaznik.rozpocet) || zakaznik.rozpocet <= 0)
      {
           cin.clear();
-          cin.ignore(100, "\n");
+          cin.ignore(100, '\n');
           cout << "Neplatný vstup, zadajte prosím platný rozpočet: ";
      }
 
@@ -77,10 +77,10 @@ int main()
      {
           // ponuka na vyhľadávanie produktov podla:
           cout << "\nVyhĺadávanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
-          while ((!cin >> volba) || volba < 1 || volba > 3)
+          while (!(cin >> volba) || volba < 1 || volba > 3)
           {
                cin.clear();
-               cin.ignore(100, "\n");
+               cin.ignore(100, '\n');
                cout << "Neplatná voľba, skúste to znova: ";
           }
 
@@ -147,11 +147,10 @@ int main()
                while (!(cin >> zvolene_ID))
                {
                     cin.clear();
-                    cin.ignore(100, "\n");
+                    cin.ignore(100, '\n');
                     cout << "Neplatné ID, skúste to znova: ";
                }
 
-               bool najdeny = false;
                for (int i = 0; i < pocetProduktov; i++)
                {
                     if (produkty[i].ID == zvolene_ID)
@@ -167,8 +166,8 @@ int main()
                               cout << "Koľko kusov chcete kúpiť? ";
                               while (!(cin >> mnozstvo) || mnozstvo <= 0)
                               {
-                                   cin.ignore();
-                                   cin.clear(100, "\n");
+                                   cin.clear();
+                                   cin.ignore(100, '\n');
                                    cout << "Neplatné množstvo, skúste to znova: ";
                               }
 
@@ -189,7 +188,7 @@ int main()
                                              cin >> odpoved;
                                         }
 
-                                        if (odpoved == 'A' || odpoved = 'a')
+                                        if (odpoved == 'A' || odpoved == 'a')
                                         {
 
                                              zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr] = produkty[i];          // pridanie produktu do košíka
