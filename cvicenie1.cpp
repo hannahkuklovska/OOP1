@@ -32,7 +32,7 @@ int main()
      // testovanie, či sa súbor otvoril
      if (!file.is_open())
      {
-          cout << "Nepodarilo sa otvoriť súbor!" << endl;
+          std::cout << "Nepodarilo sa otvoriť súbor!" << endl;
           return 1;
      }
 
@@ -57,21 +57,26 @@ int main()
      // informácie o zákazníkovi cez konzolu, zakaznik na vyzvu vpisuje
 
      ZAKAZNIK zakaznik;
-     cout << "Zadajte vače meno: ";
+     std::cout << "Zadajte vače meno: ";
      cin >> zakaznik.meno;
-     cout << "Zadajte vaše priezvisko: ";
+     std::cout << "Zadajte vaše priezvisko: ";
      cin >> zakaznik.priezvisko;
 
      // Kontrola zadaného rozpočtu (overenie, či je dobrého typu a nezáporný)
-     cout << "Zadajte váš rozpočet: ";
-     cin >> zakaznik.rozpocet;
+     std::cout << "Zadajte váš rozpočet: ";
+     while (!(cin >> zakaznik.rozpocet) || zakaznik.rozpocet <= 0)
+     {
+          cin.clear();
+          cin.ignore(100, "\n");
+          std::cout << "Neplatný vstup, zadajte prosím platný rozpočet: ";
+     }
 
      // volba produktu, pokračuje ak nie 3 (koniec) alebo zak nemá rozpočet
      int volba = 0;
      while (volba != 3 && zakaznik.rozpocet > 0)
      {
           // ponuka na vyhľadávanie produktov podla:
-          cout << "\nVyhĺadávanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
+          std::cout << "\nVyhĺadávanie produktu podľa:\n1 - názvu\n2 - výrobcu\n3 - ukončiť nákup\nZadajte voľbu: ";
           cin >> volba;
           cin.ignore();
 
@@ -79,7 +84,7 @@ int main()
           if (volba == 1)
           {
                string hladany_nazov;
-               cout << "Zadajte názov hľadaného produktu: ";
+               std::cout << "Zadajte názov hľadaného produktu: ";
                getline(cin, hladany_nazov);
 
                bool najdeny = false;
@@ -87,21 +92,21 @@ int main()
                {
                     if (produkty[i].nazov == hladany_nazov)
                     {
-                         cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
+                         std::cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
                          najdeny = true;
                     }
                }
 
                if (najdeny == false)
                {
-                    cout << "Ľutujeme, produkt nebol nájdený. " << endl;
+                    std::cout << "Ľutujeme, produkt nebol nájdený. " << endl;
                }
           }
           // hladanie podla vyrobcu
           else if (volba == 2)
           {
                string hladany_vyrobca;
-               cout << "Zadajte hľadaného výrobcu: ";
+               std::cout << "Zadajte hľadaného výrobcu: ";
                getline(cin, hladany_vyrobca);
 
                bool najdeny = false;
@@ -109,14 +114,14 @@ int main()
                {
                     if (produkty[i].vyrobca == hladany_vyrobca)
                     {
-                         cout << produkty[i].ID << ". " << produkty[i].nazov << ", " << produkty[i].vyrobca << ", " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
+                         std::cout << produkty[i].ID << ". " << produkty[i].nazov << ", " << produkty[i].vyrobca << ", " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
                          najdeny = true;
                     }
                }
 
                if (najdeny == false)
                {
-                    cout << "Ľutujeme, produkt nebol nájdený." << endl;
+                    std::cout << "Ľutujeme, produkt nebol nájdený." << endl;
                }
           }
 
