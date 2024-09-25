@@ -61,6 +61,8 @@ int main()
      cin >> zakaznik.meno;
      cout << "Zadajte vaše priezvisko: ";
      cin >> zakaznik.priezvisko;
+
+     // Kontrola zadaného rozpočtu (overenie, či je dobrého typu a nezáporný)
      cout << "Zadajte váš rozpočet: ";
      cin >> zakaznik.rozpocet;
 
