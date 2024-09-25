@@ -183,7 +183,13 @@ int main()
                                         cout << "Celková cena: " << total_price << " €. Máte záujem o kúpu tohto produktu? (A - áno, N - nie): ";
                                         cin >> odpoved;
 
-                                        if (odpoved == 'A' || odpoved == 'a') // aj male a je pripustne
+                                        while (odpoved != 'A' && odpoved != 'a' && odpoved != 'N' && odpoved != 'n') // aj male a je pripustne
+                                        {
+                                             cout << "Neplatný vstup, zadajte A alebo N, prosím: ";
+                                             cin >> odpoved;
+                                        }
+
+                                        if (odpoved == 'A' || odpoved = 'a')
                                         {
 
                                              zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr] = produkty[i];          // pridanie produktu do košíka
