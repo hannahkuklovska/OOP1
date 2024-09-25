@@ -120,16 +120,17 @@ int main()
                     }
                } while (!najdeny && volba != 3);
                // hladanie podla vyrobcu
-          }
 
-          if (najdena = true)
-          {
-               int zvolene_ID;
-               cout << "Zvoĺte ID želaného produktu: " while (!(cin >> zvolene_ID) || find(begin(zobrazeneIDs), end(zobrazeneIDs), zvolene_ID))
+               if (najdeny == true)
                {
-                    cin.clear();
-                    cin.ignore(100, '\n');
-                    cout << "Neplatné ID, skúste to znova: ";
+                    int zvolene_ID;
+                    cout << "Zvoĺte ID želaného produktu: ";
+                    while (!(cin >> zvolene_ID) || find(begin(zobrazeneIDs), end(zobrazeneIDs), zvolene_ID))
+                    {
+                         cin.clear();
+                         cin.ignore(100, '\n');
+                         cout << "Neplatné ID, skúste to znova: ";
+                    }
                }
           }
 
@@ -137,8 +138,6 @@ int main()
           {
                string hladany_vyrobca;
                bool najdeny = false; // nastavenie bool(u) spat na false
-               std::cout << "Zadajte hľadaného výrobcu: ";
-               getline(cin, hladany_vyrobca);
 
                do
                {
@@ -147,11 +146,13 @@ int main()
                     getline(cin, hladany_vyrobca);
 
                     najdeny = false;
+                    pocet_zobrazenychIDs = 0;
 
                     for (int i = 0; i < pocetProduktov; i++)
                     {
                          if (produkty[i].vyrobca == hladany_vyrobca)
                          {
+                              zobrazeneIDs[pocet_zobrazenychIDs++] = produkty[i].ID;
                               cout << produkty[i].ID << ". " << produkty[i].nazov << ", " << produkty[i].vyrobca << ", " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
                               najdeny = true;
                          }
@@ -162,6 +163,18 @@ int main()
                          std::cout << "Ľutujeme, produkt nebol nájdený." << endl;
                     }
                } while (!najdeny && volba != 3);
+
+               if (najdeny == true)
+               {
+                    int zvolene_ID;
+                    cout << "Zvoľte si ID želaného produktu: ";
+                    while (!(cin >> zvolene_ID) || find(begin(zobrazeneIDs), end(zobrazeneIDs), zvolene_ID))
+                    {
+                         cin.clear();
+                         cin.ignore(100, '\n');
+                         cout << "Neplatné ID, skúste to znova: ";
+                    }
+               }
           }
 
           // zákazník si zvolil ukončiť nákup
