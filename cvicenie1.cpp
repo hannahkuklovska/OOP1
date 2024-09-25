@@ -152,133 +152,87 @@ int main()
                getline(cin, hladany_nazov);
                najdeny = false;
 
-               do
+               for (int i = 0; i < pocetProduktov; i++)
                {
-                    cout << "Zadajte názov hľadaného produktu: ";
-                    getline(cin, hladany_nazov);
-
-                    najdeny = false;          // reset bool(u) spat na false
-                    pocet_zobrazenychIDs = 0; // reset na 0
-
-                    for (int i = 0; i < pocetProduktov; i++)
+                    if (produkty[i].nazov == hladany_nazov)
                     {
-                         if (produkty[i].nazov == hladany_nazov)
-                         {
-                              zobrazeneIDs.insert(produkty[i].ID); // pridanie do setu
-                              cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
-                              najdeny = true; // najdeny produkt
-                         }
+                         zobrazeneIDs.insert(produkty[i].ID); // pridanie do setu
+                         cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
+                         najdeny = true; // najdeny produkt
                     }
+               }
 
-                    if (najdeny == false)
-                    {
-                         cout << "Ľutujeme, produkt nebol nájdený. " << endl;
-                    }
-
-               } while (!najdeny && volba != 3);
-
-               if (najdeny == true)
+               if (najdeny == false)
                {
-                    int zvolene_ID;
-                    bool spravne_id = false;
-                    cout << "Zvoľte ID želaného produktu: ";
-                    do
-                    {
-                         if (!(cin >> zvolene_ID))
-                         // element nie je v sete, return value je true a skočí na koniec setu
-                         {
-                              cin.clear();
-                              cin.ignore(100, '\n');
-                              cout << "Neplatné ID, skúste to znova: ";
-                         }
-                         else if (zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end()) // overenie, či vybrané ID je zobrazene
-                         {
-                              cout << "ID nie je na zozname zobrazených produktov, skúste to znova: ";
-                         }
-                         else
-                         {
-                              spravne_id = true; // spravne ID najdene
-                         }
-                    } while (spravne_id == false);
+                    cout << "Ľutujeme, produkt nebol nájdený. " << endl;
                }
           }
+          while (!najdeny && volba != 3)
+               ;
 
-          else if (volba == 2)
-          {
-               string hladany_vyrobca;
-               bool najdeny = false; // nastavenie bool(u) spat na false
-
-               do
-               {
-
-                    cout << "Zadajte hľadaného výrobcu: ";
-                    getline(cin, hladany_vyrobca);
-
-                    najdeny = false;
-                    pocet_zobrazenychIDs = 0;
-
-                    for (int i = 0; i < pocetProduktov; i++)
-                    {
-                         if (produkty[i].vyrobca == hladany_vyrobca)
-                         {
-                              zobrazeneIDs.insert(produkty[i].ID);
-                              cout << produkty[i].ID << ". " << produkty[i].nazov << ", " << produkty[i].vyrobca << ", " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
-                              najdeny = true;
-                         }
-                    }
-
-                    if (najdeny == false)
-                    {
-                         cout << "Ľutujeme, produkt nebol nájdený." << endl;
-                    }
-               } while (!najdeny && volba != 3);
-
-               if (najdeny == true)
-               {
-                    int zvolene_ID;
-                    bool spravne_id = false;
-                    cout << "Zvoľte si ID želaného produktu: ";
-                    do
-                    {
-                         if (!(cin >> zvolene_ID))
-                         // element nie je v sete, return value je true a skočí na koniec setu
-                         {
-                              cin.clear();
-                              cin.ignore(100, '\n');
-                              cout << "Neplatné ID, skúste to znova: ";
-                         }
-                         else if (zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end()) // overenie, či vybrané ID je zobrazene
-                         {
-                              cout << "ID nie je na zozname zobrazených produktov, skúste to znova: ";
-                         }
-
-                         else
-                         {
-                              spravne_id = true; // spravne ID najdene
-                         }
-                    } while (spravne_id == false);
-               }
-          }
-
-          // zákazník si zvolil ukončiť nákup
-          else if (volba == 3)
-          {
-               cout << "Nákup bol ukončeny. " << endl;
-               break;
-          }
-
-          if (volba == 1 || volba == 2)
+          if (najdeny == true)
           {
                int zvolene_ID;
-               bool najdeny = false;
                bool spravne_id = false;
-
                cout << "Zvoľte ID želaného produktu: ";
-
-               // cyklus na overenie ID
                do
                {
+                    if (!(cin >> zvolene_ID))
+                    // element nie je v sete, return value je true a skočí na koniec setu
+                    {
+                         cin.clear();
+                         cin.ignore(100, '\n');
+                         cout << "Neplatné ID, skúste to znova: ";
+                    }
+                    else if (zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end()) // overenie, či vybrané ID je zobrazene
+                    {
+                         cout << "ID nie je na zozname zobrazených produktov, skúste to znova: ";
+                    }
+                    else
+                    {
+                         spravne_id = true; // spravne ID najdene
+                    }
+               } while (spravne_id == false);
+          }
+     }
 
+     else if (volba == 2)
+     {
+          string hladany_vyrobca;
+          bool najdeny = false; // nastavenie bool(u) spat na false
+
+          do
+          {
+
+               cout << "Zadajte hľadaného výrobcu: ";
+               getline(cin, hladany_vyrobca);
+
+               najdeny = false;
+               pocet_zobrazenychIDs = 0;
+
+               for (int i = 0; i < pocetProduktov; i++)
+               {
+                    if (produkty[i].vyrobca == hladany_vyrobca)
+                    {
+                         zobrazeneIDs.insert(produkty[i].ID);
+                         cout << produkty[i].ID << ". " << produkty[i].nazov << ", " << produkty[i].vyrobca << ", " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
+                         najdeny = true;
+                    }
+               }
+
+               if (najdeny == false)
+               {
+                    cout << "Ľutujeme, produkt nebol nájdený." << endl;
+               }
+          } while (!najdeny && volba != 3);
+
+          if (najdeny == true)
+          {
+               int zvolene_ID;
+               bool spravne_id = false;
+               cout << "Zvoľte si ID želaného produktu: ";
+               do
+               {
                     if (!(cin >> zvolene_ID))
                     // element nie je v sete, return value je true a skočí na koniec setu
                     {
@@ -296,88 +250,127 @@ int main()
                          spravne_id = true; // spravne ID najdene
                     }
                } while (spravne_id == false);
+          }
+     }
 
-               for (int i = 0; i < pocetProduktov; i++)
+     // zákazník si zvolil ukončiť nákup
+     else if (volba == 3)
+     {
+          cout << "Nákup bol ukončeny. " << endl;
+          break;
+     }
+
+     if (volba == 1 || volba == 2)
+     {
+          int zvolene_ID;
+          bool najdeny = false;
+          bool spravne_id = false;
+
+          cout << "Zvoľte ID želaného produktu: ";
+
+          // cyklus na overenie ID
+          do
+          {
+
+               if (!(cin >> zvolene_ID))
+               // element nie je v sete, return value je true a skočí na koniec setu
                {
-                    if (produkty[i].ID == zvolene_ID)
+                    cin.clear();
+                    cin.ignore(100, '\n');
+                    cout << "Neplatné ID, skúste to znova: ";
+               }
+               else if (zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end()) // overenie, či vybrané ID je zobrazene
+               {
+                    cout << "ID nie je na zozname zobrazených produktov, skúste to znova: ";
+               }
+
+               else
+               {
+                    spravne_id = true; // spravne ID najdene
+               }
+          } while (spravne_id == false);
+
+          for (int i = 0; i < pocetProduktov; i++)
+          {
+               if (produkty[i].ID == zvolene_ID)
+               {
+                    najdeny = true;
+
+                    if (produkty[i].pocet_na_sklade > 0)
                     {
-                         najdeny = true;
+                         char odpoved;
+                         int mnozstvo;
 
-                         if (produkty[i].pocet_na_sklade > 0)
+                         cout << "Vami vybratý produkt: " << produkty[i].nazov << "za " << produkty[i].cena << "€ " << endl;
+                         cout << "Koľko kusov chcete kúpiť? ";
+                         while (!(cin >> mnozstvo) || mnozstvo <= 0)
                          {
-                              char odpoved;
-                              int mnozstvo;
+                              cin.clear();
+                              cin.ignore(100, '\n');
+                              cout << "Neplatné množstvo, skúste to znova: ";
+                         }
 
-                              cout << "Vami vybratý produkt: " << produkty[i].nazov << "za " << produkty[i].cena << "€ " << endl;
-                              cout << "Koľko kusov chcete kúpiť? ";
-                              while (!(cin >> mnozstvo) || mnozstvo <= 0)
+                         // Kontrola, či je dostatok na sklade
+
+                         if (mnozstvo <= produkty[i].pocet_na_sklade)
+                         {
+                              double total_price = produkty[i].cena * mnozstvo;
+
+                              if (zakaznik.rozpocet >= total_price)
                               {
-                                   cin.clear();
-                                   cin.ignore(100, '\n');
-                                   cout << "Neplatné množstvo, skúste to znova: ";
-                              }
+                                   cout << "Celková cena: " << total_price << " €. Máte záujem o kúpu tohto produktu? (A - áno, N - nie): ";
+                                   cin >> odpoved;
 
-                              // Kontrola, či je dostatok na sklade
-
-                              if (mnozstvo <= produkty[i].pocet_na_sklade)
-                              {
-                                   double total_price = produkty[i].cena * mnozstvo;
-
-                                   if (zakaznik.rozpocet >= total_price)
+                                   while (odpoved != 'A' && odpoved != 'a' && odpoved != 'N' && odpoved != 'n') // aj male a je pripustne
                                    {
-                                        cout << "Celková cena: " << total_price << " €. Máte záujem o kúpu tohto produktu? (A - áno, N - nie): ";
+                                        cout << "Neplatný vstup, zadajte A alebo N, prosím: ";
                                         cin >> odpoved;
-
-                                        while (odpoved != 'A' && odpoved != 'a' && odpoved != 'N' && odpoved != 'n') // aj male a je pripustne
-                                        {
-                                             cout << "Neplatný vstup, zadajte A alebo N, prosím: ";
-                                             cin >> odpoved;
-                                        }
-
-                                        if (odpoved == 'A' || odpoved == 'a')
-                                        {
-
-                                             zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr] = produkty[i];          // pridanie produktu do košíka
-                                             zakaznik.mnozstvo_kupenych_produktov[zakaznik.pocet_kupenych_pr] = mnozstvo; // pridanie mnozstva
-                                             zakaznik.pocet_kupenych_pr++;                                                // zvysenie poctu kupenych pr
-                                             zakaznik.rozpocet -= produkty[i].cena;                                       // zmenšenie rozpočtu
-                                             produkty[i].pocet_na_sklade -= mnozstvo;                                     // znizenie poctu opr na sklade o mnozstvo
-                                             cout << "Predaj prebehol úspešne!\n Zostávajúci rozpočet: " << zakaznik.rozpocet << "€.\n";
-                                        }
-                                        else if (odpoved == 'N' || odpoved == 'n')
-                                        {
-                                             cout << "Nákup produktu bol zrušený.\n";
-                                        }
                                    }
 
-                                   else
+                                   if (odpoved == 'A' || odpoved == 'a')
                                    {
-                                        cout << "Ľutujeme, nemáte dostatočný rozpočet." << endl;
-                                        break;
+
+                                        zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr] = produkty[i];          // pridanie produktu do košíka
+                                        zakaznik.mnozstvo_kupenych_produktov[zakaznik.pocet_kupenych_pr] = mnozstvo; // pridanie mnozstva
+                                        zakaznik.pocet_kupenych_pr++;                                                // zvysenie poctu kupenych pr
+                                        zakaznik.rozpocet -= produkty[i].cena;                                       // zmenšenie rozpočtu
+                                        produkty[i].pocet_na_sklade -= mnozstvo;                                     // znizenie poctu opr na sklade o mnozstvo
+                                        cout << "Predaj prebehol úspešne!\n Zostávajúci rozpočet: " << zakaznik.rozpocet << "€.\n";
+                                   }
+                                   else if (odpoved == 'N' || odpoved == 'n')
+                                   {
+                                        cout << "Nákup produktu bol zrušený.\n";
                                    }
                               }
 
                               else
                               {
-                                   cout << "Ľutujeme, nemáme dostatok na sklade.\n ";
+                                   cout << "Ľutujeme, nemáte dostatočný rozpočet." << endl;
+                                   break;
                               }
                          }
+
                          else
                          {
-                              cout << "Ľutujeme, produkt nie je na sklade.\n ";
+                              cout << "Ľutujeme, nemáme dostatok na sklade.\n ";
                          }
                     }
-               }
-               // neexistuje taký produkt
-               if (najdeny == false)
-               {
-                    cout << "Ľutujeme, ID bolo zle zadané.\n";
+                    else
+                    {
+                         cout << "Ľutujeme, produkt nie je na sklade.\n ";
+                    }
                }
           }
+          // neexistuje taký produkt
+          if (najdeny == false)
+          {
+               cout << "Ľutujeme, ID bolo zle zadané.\n";
+          }
      }
-     // Vypis blocku
-     tlac_blocku(zakaznik);
-     delete[] produkty; // Vymazanie dynamicky alokovanej pamate
+}
+// Vypis blocku
+tlac_blocku(zakaznik);
+delete[] produkty; // Vymazanie dynamicky alokovanej pamate
 
-     return 0;
+return 0;
 }
