@@ -35,7 +35,7 @@ int main()
      // testovanie, či sa súbor otvoril
      if (!file.is_open())
      {
-          std::cout << "Nepodarilo sa otvoriť súbor!" << endl;
+          cout << "Nepodarilo sa otvoriť súbor!" << endl;
           return 1;
      }
 
@@ -121,24 +121,32 @@ int main()
                     {
                          cout << "Ľutujeme, produkt nebol nájdený. " << endl;
                     }
+
                } while (!najdeny && volba != 3);
 
                if (najdeny == true)
                {
                     int zvolene_ID;
                     bool spravne_id = false;
-                    // cout << "Zvoĺte ID želaného produktu: ";
-                    if (!(cin >> zvolene_ID) || zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end())
+                    cout << "Zvoĺte ID želaného produktu: ";
+                    do
                     {
-                         cin.clear();           // vycistenie, reset
-                         cin.ignore(100, '\n'); // ignorovanie 100 znakov
-                         cout << "Neplatné ID, skúste to znova: ";
-                    }
-
-                    else
-                    {
-                         spravne_id = true;
-                    }
+                         if (!(cin >> zvolene_ID))
+                         // element nie je v sete, return value je true a skočí na koniec setu
+                         {
+                              cin.clear();
+                              cin.ignore(100, '\n');
+                              cout << "Neplatné ID, skúste to znova: ";
+                         }
+                         else if (zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end()) // overenie, či vybrané ID je zobrazene
+                         {
+                              cout << "ID nie je na zozname zobrazených produktov, skúste to znova: ";
+                         }
+                         else
+                         {
+                              spravne_id = true; // spravne ID najdene
+                         }
+                    } while (spravne_id == false);
                }
           }
 
@@ -168,21 +176,34 @@ int main()
 
                     if (najdeny == false)
                     {
-                         std::cout << "Ľutujeme, produkt nebol nájdený." << endl;
+                         cout << "Ľutujeme, produkt nebol nájdený." << endl;
                     }
                } while (!najdeny && volba != 3);
 
                if (najdeny == true)
                {
                     int zvolene_ID;
-                    // cout << "Zvoľte si ID želaného produktu: ";
-                    while (!(cin >> zvolene_ID) || zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end())
-                    // element nie je v sete, return value je true a skočí na koniec setu
+                    bool spravne_id = false;
+                    cout << "Zvoľte si ID želaného produktu: ";
+                    do
                     {
-                         cin.clear();
-                         cin.ignore(100, '\n');
-                         cout << "Neplatné ID, skúste to znova: ";
-                    }
+                         if (!(cin >> zvolene_ID))
+                         // element nie je v sete, return value je true a skočí na koniec setu
+                         {
+                              cin.clear();
+                              cin.ignore(100, '\n');
+                              cout << "Neplatné ID, skúste to znova: ";
+                         }
+                         else if (zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end()) // overenie, či vybrané ID je zobrazene
+                         {
+                              cout << "ID nie je na zozname zobrazených produktov, skúste to znova: ";
+                         }
+
+                         else
+                         {
+                              spravne_id = true; // spravne ID najdene
+                         }
+                    } while (spravne_id == false);
                }
           }
 
@@ -197,14 +218,31 @@ int main()
           {
                int zvolene_ID;
                bool najdeny = false;
+               bool spravne_id = false;
 
                cout << "Zvoľte ID želaného produktu: ";
-               while (!(cin >> zvolene_ID))
+
+               // cyklus na overenie ID
+               do
                {
-                    cin.clear();
-                    cin.ignore(100, '\n');
-                    cout << "Neplatné ID, skúste to znova: ";
-               }
+
+                    if (!(cin >> zvolene_ID))
+                    // element nie je v sete, return value je true a skočí na koniec setu
+                    {
+                         cin.clear();
+                         cin.ignore(100, '\n');
+                         cout << "Neplatné ID, skúste to znova: ";
+                    }
+                    else if (zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end()) // overenie, či vybrané ID je zobrazene
+                    {
+                         cout << "ID nie je na zozname zobrazených produktov, skúste to znova: ";
+                    }
+
+                    else
+                    {
+                         spravne_id = true; // spravne ID najdene
+                    }
+               } while (spravne_id == false);
 
                for (int i = 0; i < pocetProduktov; i++)
                {
