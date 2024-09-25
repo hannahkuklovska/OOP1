@@ -249,6 +249,9 @@ else if (volba == 3)
      break;
 }
 
+int zvolene_ID;          // ID ktore si zakaznik vyberie
+bool spravne_id = false; // prvtone nastavenie false
+
 if (volba == 1 || volba == 2)
 {
      int zvolene_ID;
@@ -356,7 +359,7 @@ if (volba == 1 || volba == 2)
           cout << "Ľutujeme, ID bolo zle zadané.\n";
      }
 }
-}
+
 // Vypis blocku
 tlac_blocku(zakaznik);
 delete[] produkty; // Vymazanie dynamicky alokovanej pamate
