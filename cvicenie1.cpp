@@ -88,27 +88,27 @@ int main()
 
           // Maximálna veľkosť array IDs, ktore sa zakaznikovi zobrazia, staticky
           int zobrazeneIDs[50];
+          int pocet_zobrazenychIDs = 0;
 
           // hladanie podla nazvu
           if (volba == 1)
           {
                string hladany_nazov;
-               std::cout << "Zadajte názov hľadaného produktu: ";
-               getline(cin, hladany_nazov);
-
                bool najdeny = false;
 
                do
                {
                     cout << "Zadajte názov hľadaného produktu: ";
-                    getline(cin, hladany_nazov);
+                    getline(cin, hladany_nazov); // reset premennej na 0
 
                     najdeny = false; // reset bool(u) spat na false
+                    pocet_zobrazenychIDs = 0;
 
                     for (int i = 0; i < pocetProduktov; i++)
                     {
                          if (produkty[i].nazov == hladany_nazov)
                          {
+                              zobrazeneIDs[pocet_zobrazenychIDs++] = produkty[i].ID; // pridanie ID do array
                               cout << produkty[i].ID << ". " << produkty[i].nazov << " " << produkty[i].vyrobca << " " << "cena: " << produkty[i].cena << " ks na sklade: " << produkty[i].pocet_na_sklade << endl;
                               najdeny = true; // najdeny produkt
                          }
