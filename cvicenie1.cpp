@@ -162,9 +162,15 @@ int main()
                          {
                               char odpoved;
                               int mnozstvo;
+
                               cout << "Vami vybratý produkt: " << produkty[i].nazov << "za" << produkty[i].cena << "€" << endl;
                               cout << "Koľko kusov chcete kúpiť? ";
-                              cin >> mnozstvo;
+                              while (!(cin >> mnozstvo) || mnozstvo <= 0)
+                              {
+                                   cin.ignore();
+                                   cin.clear(100, "\n");
+                                   cout << "Neplatné množstvo, skúste to znova: ";
+                              }
 
                               // Kontrola, či je dostatok na sklade
 
