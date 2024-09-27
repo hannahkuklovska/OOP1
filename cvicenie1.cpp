@@ -20,6 +20,7 @@ struct ZAKAZNIK
      string meno;
      string priezvisko;
      double rozpocet;
+     double povodny_rozpocet;     // povodny rozpocet
      PRODUKT kupene_produkty[50]; // statické pole produktov
      int pocet_kupenych_pr = 0;
      int mnozstvo_kupenych_produktov[50]; // staticky alokovane
@@ -40,6 +41,8 @@ void informacie_o_zakaznikovi(ZAKAZNIK &zakaznik)
           cin.ignore(100, '\n');
           cout << "Neplatný vstup, zadajte prosím platný rozpočet: ";
      }
+
+     zakaznik.povodny_rozpocet = zakaznik.rozpocet; // uloženie povodneho rozpoctu
 }
 
 void tlac_blocku(const ZAKAZNIK zakaznik) // funkcia na bloček
@@ -71,7 +74,7 @@ void tlac_blocku(const ZAKAZNIK zakaznik) // funkcia na bloček
 
           blocek << "-----------------------------\n";
           blocek << "Celkova vyplatená suma: " << total << " €\n";
-          blocek << "Pôvodný rozpočet: " << zakaznik.rozpocet + total << " €\n";
+          blocek << "Pôvodný rozpočet: " << zakaznik.povodny_rozpocet << " €\n";
           blocek << "Zostatkový rozpočet: " << zakaznik.rozpocet << " €\n";
           blocek << "-----------------------------\n";
           cout << "Ďakujeme za nákup, zoberte si bloček prosím" << endl;
@@ -94,6 +97,7 @@ int main()
      ifstream file("fotoaparaty.txt");
      int pocetProduktov;
      int pocet_zobrazenychIDs;
+     bool spravne_id;
 
      // testovanie, či sa súbor otvoril
      if (!file.is_open())
