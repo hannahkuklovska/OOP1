@@ -204,7 +204,7 @@ int main()
 
           cout << "Zvoľte ID želaného produktu: ";
 
-          while (!(cin >> zvolene_ID) || zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end())
+          while (!(cin >> zvolene_ID) || zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end()) // opakuje, kym je ID zadane zle
           {
                cin.clear();
                cin.ignore(100, '\n');
@@ -228,7 +228,7 @@ int main()
                          {
                               cin.clear();
                               cin.ignore(100, '\n');
-                              cout << "Neplatné množstvo, skúste to znova: ";
+                              cout << "Neplatné množstvo, skúste to znova: "; // zle zadane
                          }
 
                          // Kontrola, či je dostatok na sklade
@@ -260,7 +260,7 @@ int main()
                                    }
                                    else if (odpoved == 'N' || odpoved == 'n')
                                    {
-                                        cout << "Nákup produktu bol zrušený.\n";
+                                        cout << "Nákup produktu bol zrušený.\n"; // nechcenie pokračovať
                                    }
                               }
 
