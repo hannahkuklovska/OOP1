@@ -34,7 +34,7 @@ void informacie_o_zakaznikovi(ZAKAZNIK &zakaznik)
 
      // Kontrola zadaného rozpočtu (overenie, či je dobrého typu a nezáporný)
      cout << "Zadajte váš rozpočet: ";
-     while (!(cin >> zakaznik.rozpocet) || zakaznik.rozpocet <= 0)
+     while (!(cin >> zakaznik.rozpocet) || zakaznik.rozpocet <= 0) // nedostačný rozpočet
      {
           cin.clear();
           cin.ignore(100, '\n');
@@ -42,7 +42,7 @@ void informacie_o_zakaznikovi(ZAKAZNIK &zakaznik)
      }
 }
 
-void tlac_blocku(const ZAKAZNIK zakaznik)
+void tlac_blocku(const ZAKAZNIK zakaznik) // funkcia na bloček
 {
      // Vypis blocku
      ofstream blocek("blocek.txt");
@@ -99,7 +99,7 @@ int main()
      if (!file.is_open())
      {
           cout << "Nepodarilo sa otvoriť súbor!" << endl;
-          return 1;
+          return 1; // navratova hodnota chyby
      }
 
      // priradenie
@@ -171,10 +171,9 @@ int main()
           else if (volba == 2)
           {
                string hladany_vyrobca;
-               bool najdeny = false; // nastavenie bool(u) spat na false
+               najdeny = false; // nastavenie bool(u) spat na false
                cout << "Zadajte hľadaného výrobcu: ";
                getline(cin, hladany_vyrobca);
-               najdeny = false;
                pocet_zobrazenychIDs = 0;
 
                for (int i = 0; i < pocetProduktov; i++)
@@ -200,12 +199,12 @@ int main()
                break;
           }
 
-          int zvolene_ID;          // ID ktore si zakaznik vyberie
-          bool spravne_id = false; // prvtone nastavenie false
+          int zvolene_ID;     // ID ktore si zakaznik vyberie
+          spravne_id = false; // prvtone nastavenie false
 
           cout << "Zvoľte ID želaného produktu: ";
 
-          while (!(cin >> zvolene_ID) || zobrazeneIDs.find(zvolene_ID) == zobrazenie.end())
+          while (!(cin >> zvolene_ID) || zobrazeneIDs.find(zvolene_ID) == zobrazeneIDs.end())
           {
                cin.clear();
                cin.ignore(100, '\n');
