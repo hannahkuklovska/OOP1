@@ -258,7 +258,7 @@ int main()
                                         zakaznik.kupene_produkty[zakaznik.pocet_kupenych_pr] = produkty[i];          // pridanie produktu do košíka
                                         zakaznik.mnozstvo_kupenych_produktov[zakaznik.pocet_kupenych_pr] = mnozstvo; // pridanie mnozstva
                                         zakaznik.pocet_kupenych_pr++;                                                // zvysenie poctu kupenych pr
-                                        zakaznik.rozpocet -= produkty[i].cena;                                       // zmenšenie rozpočtu
+                                        zakaznik.rozpocet -= total_price;                                            // zmenšenie rozpočtu
                                         produkty[i].pocet_na_sklade -= mnozstvo;                                     // znizenie poctu opr na sklade o mnozstvo
                                         cout << "Predaj prebehol úspešne!\n Zostávajúci rozpočet: " << zakaznik.rozpocet << "€.\n";
                                    }
